@@ -1,0 +1,1 @@
+/**包含n个actiontype  常量 */
