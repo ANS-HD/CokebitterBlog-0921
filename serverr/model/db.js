@@ -15,7 +15,9 @@
 //     })
 // }
 // module.exports ={connect}
+//连接数据库
 const mongoose =  require('mongoose')
+
 mongoose.connect('mongodb://localhost:27017/MyNewBlog')
 const connection = mongoose.connection
 const md5 = require('blueimp-md5')//密码加密md5
@@ -39,7 +41,7 @@ function testSave(){
     console.log('save()',error,userDoc)
   })
 }
-testSave()
+// testSave()
 //通过Model的find查询
 function testFind() {
     UserModel.find(function(error,users){

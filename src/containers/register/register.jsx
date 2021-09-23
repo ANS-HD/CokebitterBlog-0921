@@ -1,11 +1,20 @@
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 import { Component } from 'react';
 import './register.less'
 const onFinish = (values) => {
   console.log('Received values of form: ', values);
 };
 export default class Register extends Component {
+  state={
+    Username:'',//用户名
+    password:'',//密码
+    confirm:'',//确认密码
+  }
+  //注册提交
+  register=()=>{
+
+  }
   render() {
     const tailFormItemLayout = {
       wrapperCol: {
@@ -40,20 +49,20 @@ export default class Register extends Component {
     return (
       
       <div className='components-form-demo-normal-login'>
-        <header className='header'></header>
+        <p>注册</p>
       <Form
         {...formItemLayout}
 
         name="register"
         onFinish={onFinish}
         className="login-form"
-        initialValues={{
-          remember: true,
-        }}
+        // initialValues={{
+        //   remember: true,
+        // }}
 
       >
         <Form.Item
-          name="nickname"
+          name="Username"
           label="用户名"
           tooltip="What do you want others to call you?"
           rules={[
@@ -105,7 +114,7 @@ export default class Register extends Component {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={this.register}>
             Register
           </Button>
         </Form.Item>
