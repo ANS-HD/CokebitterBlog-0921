@@ -49,7 +49,7 @@ const filter = {password:0}
 // })
 //注册路由
 router.post('./register',function(req,res){
-  const {username,password} = req.body
+  const {username,password,type} = req.body
   // 根据username和password查询数据库users集合，没有 登陆失败用户名或密码不存在  
   // 如果有 返回一个表示成功的信息（包含user）
   UserModel.findOne({username},function(error,user){
@@ -57,9 +57,9 @@ router.post('./register',function(req,res){
        //生成cookie
        res.send({code:1,msg:'用户名已存在！'})
       }else{//登陆失败
-        new UserModel({username,password}).save(function(error,user){
+        new UserModel({username,password,type}).save(function(error,user){
           res.cookie('userid',user._id,{maxAge:1000*60*60*24})
-          const data = {username,_id:user._id}
+          const data = {username,type,_id:user._id}
           res.send({code:0,data})
         })
     }

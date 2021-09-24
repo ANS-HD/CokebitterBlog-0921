@@ -10,7 +10,7 @@ conn.on('connected',()=>{
 const userSchema = mongoose.Schema({
     username:{type:String,required:true},//用户名
     password:{type:String,required:true},//密码
-    type:{type:String,required:true},//用户类型
+    // type:{type:String,required:true},//用户类型
 })
 const UserModel = mongoose.model('user',userSchema)
 exports.UserModel = UserModel

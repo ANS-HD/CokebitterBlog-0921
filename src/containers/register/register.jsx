@@ -1,21 +1,21 @@
 import { Form, Input, Button } from 'antd';
 
 import { Component } from 'react';
+import {connect} from 'react-redux'
+import {register} from '../../redux/action'
 import './register.less'
-const onFinish = (values) => {
-  console.log('Received values of form: ', values);
-};
-export default class Register extends Component {
+
+class Register extends Component {
   state={
-    Username:'',//用户名
+    username:'',//用户名
     password:'',//密码
     confirm:'',//确认密码
   }
   //注册提交
-  register=()=>{
-
-  }
   render() {
+    const onFinish = () => {
+      this.props.register(this.state)
+    };
     const tailFormItemLayout = {
       wrapperCol: {
         xs: {
@@ -62,7 +62,7 @@ export default class Register extends Component {
 
       >
         <Form.Item
-          name="Username"
+          name="username"
           label="用户名"
           tooltip="What do you want others to call you?"
           rules={[
@@ -114,7 +114,7 @@ export default class Register extends Component {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit" onClick={this.register}>
+          <Button type="primary" htmlType="submit" >
             Register
           </Button>
         </Form.Item>
@@ -123,3 +123,7 @@ export default class Register extends Component {
     );
   };
 };
+export default connect(
+  state =>({}),
+  {register}
+)(Register)
