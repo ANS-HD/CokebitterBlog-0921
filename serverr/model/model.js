@@ -2,7 +2,7 @@
 
 //连接数据库
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/MyNewBlog')
+mongoose.connect('mongodb://localhost:27017/MyNewBlog2')
 const conn = mongoose.connection
 conn.on('connected',()=>{
     console.log('db connect success')
@@ -10,7 +10,9 @@ conn.on('connected',()=>{
 const userSchema = mongoose.Schema({
     username:{type:String,required:true},//用户名
     password:{type:String,required:true},//密码
-    // type:{type:String,required:true},//用户类型
+    password2:{type:String,required:true},//密码
+    
+    // type:{type:String},//用户类型
 })
 const UserModel = mongoose.model('user',userSchema)
 exports.UserModel = UserModel

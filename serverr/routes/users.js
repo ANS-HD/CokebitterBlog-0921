@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
   var data={
     username:req.body.username,
-    password:req.body.password
+    password:req.body.password,
+    password2:req.body.password2
   }
   res.send(data)
   // res.send('respond with a resource');

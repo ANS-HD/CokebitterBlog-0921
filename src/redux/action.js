@@ -14,17 +14,17 @@ import {reqLogin,
     const errorMsg =(msg)=>({type:ERROR_MSG,data:msg})
 //注册异步action
 export const register = (user) =>{
-    const {Username,password,confirm} = user;
+    const {username,password,password2} = user;
     
     //表单的前台验证  如果不通过，返回一个errorMsg的同步action
-    if(password!==confirm){
+    if(password!==password2){
         return errorMsg('密码不一致，两次密码要一致')
     }
     //表单数据合法  返回一个发ajax请求的异步action
-    return async dispatch=>{
+    return async dispatch =>{
 
         //发送注册的异步请求
-        const response = await reqRegister({Username,password,confirm})
+        const response = await reqRegister({username,password})
         const result = response.data
         
         if(response.code===0){

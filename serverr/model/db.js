@@ -16,7 +16,7 @@
 // }
 // module.exports ={connect}
 const mongoose =  require('mongoose')
-mongoose.connect('mongodb://localhost:27017/MyNewBlog')
+mongoose.connect('mongodb://localhost:27017/MyNewBlog2')
 const connection = mongoose.connection
 const md5 = require('blueimp-md5')//密码加密md5
 connection.on('connected',function(){
@@ -27,14 +27,14 @@ const userSchema = mongoose.Schema({
     //指定文档结构  属性名/属性值的类型/是否是必须的/默认值
     username:{type:String,required:true},//用户名
     password:{type:String,required:true},//密码
-    type:{type:String,required:true},//用户类型
-    header:{type:String}
+    // type:{type:String},//用户类型
+
 })
 const UserModel = mongoose.model('user',userSchema)//集合的名称是：users
 //进行CRUD操作
 //通过Model实例的save()添加数据
 function testSave(){
-  const userModel =  new UserModel({username:'hhdd',password:md5('12345'),type:'dage'})
+  const userModel =  new UserModel({username:'admin',password:'admin'})
   userModel.save(function(error,userDoc){
     console.log('save()',error,userDoc)
   })
@@ -59,7 +59,7 @@ function testUpdate(){
 
     })
 }
-testUpdate()
+// testUpdate()
 
 //删除操作
 function testDelete(){
@@ -67,4 +67,4 @@ function testDelete(){
         console.log('remove',error,doc)
     })
 }
-testDelete()
+// testDelete()

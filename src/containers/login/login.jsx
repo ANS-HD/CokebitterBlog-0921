@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import axios from "axios";
+// import axios from "axios";
+import {reqLogin} from '../../api'
 import './css/login.less';
 import logo from '../../assets/imgs/logo512.png';
 const { Item } = Form;
@@ -10,61 +11,34 @@ const { Item } = Form;
     componentDidMount(){
         // console.log(this.props);
     }
-    pwdvalidator = (rule, value, callback) => {
-        if (!value) {
-           callback('提示密码输入')
-        } else if (value.length > 12){
-            callback('用户名必须小于12位')
-        } else if(value.length <4) {
-        callback('用户名必须大于4位')
-        } else if(!(/^\w+$/).test(value)) {
-        callback('用户名必须是字母、数字、下划线组成')
+    // pwdvalidator = (rule, value, callback) => {
+    //     if (!value) {
+    //        callback('提示密码输入')
+    //     } else if (value.length > 12){
+    //         callback('用户名必须小于12位')
+    //     } else if(value.length <4) {
+    //     callback('用户名必须大于4位')
+    //     } else if(!(/^\w+$/).test(value)) {
+    //     callback('用户名必须是字母、数字、下划线组成')
     
-        }else{
-            callback()
-        }
-    }
+    //     }else{
+    //         callback(value)
+    //     }
+    // }
   
-     handleSubmit(event){
-         event.preventDefault();//阻止默认事件--禁止form表单提交---通过ajax发送
-         this.props.form.validateFields((err,values)=>{
-             if(!err){
-                 console.log('hhd')
-                 axios.post('http://localhost:2021/login',values)
-                     .then((result)=>{
-                         console.log(result.data)
-                     })
-                     .catch((reason)=>{
-                         console.log(reason);
- 
-                     })
-             }else{
-                 message.error('输入错误，请检查')
-             }
-         })
-         console.log('Received values of form: ');
-       }
     render() {
-        // const onFinish = (event) => {
-        //     event.preventDefault();
-        //     //点击登录按钮的回调
-        //     this.props.form.validateFields((err,values)=>{
-        //         if(!err){
-        //             axios.post('http://localhost:4000/login',values)
-        //                 .then((result)=>{
-        //                     console.log(result)
-        //                 })
-        //                 .catch((reason)=>{
-        //                     console.log(reason);
-    
-        //                 })
-        //         }else{
-        //             message.error('输入错误，请检查')
-        //         }
-        //     })
-        //     console.log('Received values of form: ');
-        // };
-    
+        const  onFinish= async(values) =>   {
+              //  event.preventDefault();//阻止默认事件--禁止form表单提交---通过ajax发送
+                    const {username,password} = values
+                    let result =  await reqLogin(username,password)
+                    console.log(result)
+                      //  .then((result)=>{
+                      //     console.log(result);
+                      //  })
+                      //  .catch((reason)=>{
+                      //     console.log(reason);
+                      //  })
+             }
     return (
         <div className='login'>
             <header>
@@ -76,7 +50,7 @@ const { Item } = Form;
                 <Form
                 
                    
-                    onSubmit={this.handleSubmit}
+                    onFinish={onFinish}
                     name="normal_login"
                     className="login-form"
                     initialValues={{ remember: true }}

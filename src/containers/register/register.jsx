@@ -2,19 +2,41 @@ import { Form, Input, Button } from 'antd';
 
 import { Component } from 'react';
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+import { reqRegister } from '../../api';
 import {register} from '../../redux/action'
+
 import './register.less'
 
 class Register extends Component {
   state={
     username:'',//用户名
     password:'',//密码
-    confirm:'',//确认密码
+    password2:'',//确认密码
   }
+  //处理输入数据的改变  更新对应的状态 name变量
+  // handleChange=(name,val)=>{
+  //   this.setState({
+  //     [name]:val//属性名不是name 而是name的值
+  //   })
+  // }
   //注册提交
   render() {
-    const onFinish = () => {
-      this.props.register(this.state)
+   
+    const {msg,redirectTo} =this.props.user
+    if(redirectTo){
+      return <Redirect to={redirectTo}/>
+    }
+    const onFinish = (username) => {
+      reqRegister(username)
+      .then((result)=>{
+        console.log(result);
+     })
+     .catch((reason)=>{
+        console.log(reason);
+     })
+      // console.log(this.state);
+      // this.props.register(this.state)
     };
     const tailFormItemLayout = {
       wrapperCol: {
@@ -49,10 +71,9 @@ class Register extends Component {
     return (
       
       <div className='components-form-demo-normal-login'>
-        <p>注册</p>
+        {msg?<div className='error-msg'>{msg}</div>:null}
       <Form
         {...formItemLayout}
-
         name="register"
         onFinish={onFinish}
         className="login-form"
@@ -90,7 +111,7 @@ class Register extends Component {
         </Form.Item>
 
         <Form.Item
-          name="confirm"
+          name="password2"
           label="确认密码"
           dependencies={['password']}
           hasFeedback
@@ -124,6 +145,6 @@ class Register extends Component {
   };
 };
 export default connect(
-  state =>({}),
+  state =>({user:state.user}),
   {register}
 )(Register)
