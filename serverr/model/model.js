@@ -10,7 +10,7 @@ conn.on('connected',()=>{
 const userSchema = mongoose.Schema({
     username:{type:String,required:true},//用户名
     password:{type:String,required:true},//密码
-    password2:{type:String,required:true},//密码
+    // password2:{type:String,required:true},//密码
     
     // type:{type:String},//用户类型
 })

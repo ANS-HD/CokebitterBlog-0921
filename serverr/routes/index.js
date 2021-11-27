@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 const md5 = require('blueimp-md5')
 const  UserModel =require('../model/model').UserModel/* GET home page. */
+//引入token
+const  jwt =require('jsonwebtoken')
+const config=require('../config/jwt')
 const filter = {password:0}
 // router.get('/', function(req, res, next) {
 //   model.connect(function(db){
@@ -35,17 +38,24 @@ router.post('/register',function(req,res){
     }
   })
 })
+
+
 //登录路由
 router.post('/login',function(req,res){
   const {username,password} = req.body
   // 根据username和password查询数据库users集合，没有 登陆失败用户名或密码不存在  
   // 如果有 返回一个表示成功的信息（包含user）
-  UserModel.findOne({username,password:md5(password)},filter,function(error,user){
+  UserModel.findOne({username,password},filter,function(error,user){
     if(user){//登陆成功
        //生成cookie
+       const token= jwt.sign({username:req.body.username},config.jwtkey,{
+         //过期时间
+         expiresIn:'1h'
+       })
         res.cookie('userid',user._id,{maxAge:1000*60*60*24})
         //返回成功的信息
-        res.send({code:0,data:user})
+        res.send({code:0,data:user,token})
+        //生成token
     }else{//登陆失败
       res.send({code:1,msg:'用户名或密码不正确！'})
     }

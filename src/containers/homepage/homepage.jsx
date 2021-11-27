@@ -1,4 +1,5 @@
-import React ,{Component} from "react"
+import React ,{Component} from "react";
+
 import './homepage.less'
 export default class Homepage extends Component{
     render(){

@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker, Radio, Button } from 'antd';
+// import { DatePicker, Radio, Button } from 'antd';
 import './rili.less'
 import moment from 'moment';
 // import style from './Times.module.less'
@@ -67,7 +67,7 @@ class Times extends React.Component {
                     <div>{this.state.week}</div>
                 </div>
                <div >{this.state.time}</div>
-                
+             
             </div>
         )
     }

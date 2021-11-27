@@ -6,7 +6,7 @@ const { override , fixBabelImports,addLessLoader} =require('customize-cra')
  }),
  addLessLoader({
      javascriptEnabled:true,
-     modifyVars:{'@primary-color' : '#2E2E2E'},
+     modifyVars:{'@primary-color' : '#22C5EE'},
 
  }),
  );

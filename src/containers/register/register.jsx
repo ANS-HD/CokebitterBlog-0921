@@ -20,6 +20,9 @@ class Register extends Component {
   //     [name]:val//属性名不是name 而是name的值
   //   })
   // }
+  register=()=>{
+    this.props.register(this.state)
+  }
   //注册提交
   render() {
    

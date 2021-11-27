@@ -4,7 +4,7 @@
  * 同步action
  */
 
-import {AUTH_SUCCESS,ERROR_MSG} from './action_types'
+import {AUTH_SUCCESS,ERROR_MSG} from './action_creators/action_types'
 import {reqLogin,
     reqRegister
     } from '../api/index.js'
