@@ -1,7 +1,7 @@
 import {SAVE_USER_INFO} from './action_types'
 import {DELETE_USER_INFO} from './action_types'
 export const createsaveUserInfoAction =(value)=>{
-    console.log(value.data)
+    // console.log(value.data)
     localStorage.setItem('user', JSON.stringify(value.data))
     localStorage.setItem('token', value.token)
     localStorage.setItem('isLogin', true)

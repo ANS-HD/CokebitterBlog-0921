@@ -24,14 +24,14 @@ import axios from "axios";
 import {message} from 'antd'
 import NProgress from 'nprogress'
 import qs from 'querystring'
-// import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css'
 //配置超时
 const instance = axios.create({
     timeout:4000,
     });
     //请求拦截器
 instance.interceptors.request.use((config)=>{
-    // NProgress.start()
+    NProgress.start()
     // console.log(config)
     const {method,data} = config
     //如果是post请求
@@ -45,7 +45,7 @@ instance.interceptors.request.use((config)=>{
 //响应拦截器
 instance.interceptors.response.use(
 (response)=>{
-    // NProgress.done()
+    NProgress.done()
     //请求若成功 
     
     return response;

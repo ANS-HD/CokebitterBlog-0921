@@ -48,7 +48,7 @@ import './main.less'
                     </Menu.Item>
                     <Menu.Item key="/about" icon={<ContainerOutlined />}>
                         <Link to='/about'>
-                            <span>关于我</span>
+                            <span>个人中心</span>
                         </Link>
                     </Menu.Item>
                 </Menu>

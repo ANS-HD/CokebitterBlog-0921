@@ -33,7 +33,7 @@ class Login extends Component {
             this.props.history.replace('/');
 
         } else {
-            message.error(msg, 1)
+            message.warning(msg, 1)
         }
     }
     render() {

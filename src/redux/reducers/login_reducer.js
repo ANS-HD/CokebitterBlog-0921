@@ -14,7 +14,7 @@ export default function test(preState=initState,action){
     let newState={}
     switch(type){
         case SAVE_USER_INFO:
-            newState={user:data.data,token:data.token,isLogin:true}
+            newState={user:data.user,token:data.token,isLogin:true}
             return newState
         case DELETE_USER_INFO:
             newState={user:'',token:'',isLogin:false}
